@@ -70,6 +70,27 @@
     </div>
 </div>
 
+<script>
+    function toggleLocationMenu() {
+        var menu = document.getElementById("location-menu");
+        if (menu.style.display === "block") {
+            menu.style.display = "none";
+        } else {
+            menu.style.display = "block";
+        }
+    }
+
+    // סגירת התפריט אם לוחצים מחוץ לו
+    window.onclick = function(event) {
+        if (!event.target.matches('.location-icon-btn')) {
+            var menu = document.getElementById("location-menu");
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            }
+        }
+    }
+</script>
+
 
 
 </body>
