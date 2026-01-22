@@ -30,7 +30,7 @@ public class MyController {
         return dbUtils.signUp(username, password, phoneNumber);
     }
     @GetMapping("/signIn")
-    public String singUp(
+    public String singIn(
             @RequestParam String username,
             @RequestParam String password) {
         return dbUtils.signIn(username, password);

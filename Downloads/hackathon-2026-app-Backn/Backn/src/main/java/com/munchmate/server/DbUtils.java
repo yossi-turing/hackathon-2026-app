@@ -15,7 +15,7 @@ public class DbUtils {
     }
 
     public void createDbConnection(String username, String password) {
-        String url = "jdbc:mysql://localhost:3306/My_db";
+        String url = "jdbc:mysql://localhost:3306/MyNewSchema";
         try {
             this.connection = DriverManager.getConnection(url, username, password);
             System.out.println("✓ התחברות למסד הנתונים הצליחה!");
@@ -30,13 +30,16 @@ public class DbUtils {
     }
     public String signUp(String username, String password, String phoneNumber) {
         // בדיקת תקינות מספר הטלפון
-        if (!isValidPhoneNumber(phoneNumber)) {
-            return "מספר הטלפון לא תקין. יש להזין מספר בפורמט: 05X-XXXXXXX";
+//        if (!isValidPhoneNumber(phoneNumber)) {
+//            return "מספר הטלפון לא תקין. יש להזין מספר בפורמט: 05X-XXXXXXX";
+//        }
+        if (phoneNumber.length() == 10 && !phoneNumber.contains("-")) {
+            phoneNumber = phoneNumber.substring(0, 3) + "-" + phoneNumber.substring(3);
         }
 
         if (connection != null) {
             // בדיקה אם המשתמש כבר קיים (אותו שם משתמש ואותה סיסמה)
-            String checkSql = "SELECT COUNT(*) FROM User WHERE username = ? AND password = ?";
+            String checkSql = "SELECT COUNT(*) FROM Users WHERE username = ? AND password = ?";
             try (PreparedStatement checkStatement = connection.prepareStatement(checkSql)) {
                 checkStatement.setString(1, username);
                 checkStatement.setString(2, password);
@@ -47,7 +50,7 @@ public class DbUtils {
                 }
 
                 // אם המשתמש לא קיים, הוסף אותו
-                String insertSql = "INSERT INTO User (username, password, phone_number) VALUES (?, ?, ?)";
+                String insertSql = "INSERT INTO Users (username, password, phone_number) VALUES (?, ?, ?)";
                 try (PreparedStatement insertStatement = connection.prepareStatement(insertSql)) {
                     insertStatement.setString(1, username);
                     insertStatement.setString(2, password);
@@ -82,7 +85,7 @@ public class DbUtils {
     }
     public String signIn(String username, String password) {
         if (connection != null) {
-            String sql = "SELECT COUNT(*) FROM User WHERE username = ? AND password = ?";
+            String sql = "SELECT COUNT(*) FROM Users WHERE username = ? AND password = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, username);
                 statement.setString(2, password);
@@ -104,7 +107,7 @@ public class DbUtils {
     }
     public String removeUser(String username, String password) {
         if (connection != null) {
-            String sql = "DELETE FROM User WHERE username = ? AND password = ?";
+            String sql = "DELETE FROM Users WHERE username = ? AND password = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, username);
                 statement.setString(2, password);
