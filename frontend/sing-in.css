@@ -1,78 +1,118 @@
+/* משתנים לשליטה קלה בעיצוב */
+:root {
+    --primary-color: #ff6b6b; /* צבע דגש - כתום-אדום מודרני */
+    --secondary-color: #4CAF50; /* ירוק רענן */
+    --text-dark: #2d3436;
+    --bg-image: url('"C:\Users\hubhn\OneDrive\Desktop\Background.jpeg"');
+}
+
 /* עיצוב כללי */
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Assistant', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    overflow: hidden;
 }
 
-/* רקע התמונה - כאן כדאי לשים לינק לתמונת האוכל שלך */
+/* שכבת הרקע */
 .background-overlay {
-    background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), var(--bg-image);
     background-size: cover;
-    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* כרטיסיית הטופס השקופה */
+/* כרטיסיית ההתחברות */
 .login-container {
-    background: rgba(255, 255, 255, 0.85); /* לבן שקוף */
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 400px;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 50px 40px;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 420px;
     text-align: center;
-    backdrop-filter: blur(5px); /* אפקט טשטוש לרקע */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 h2 {
-    margin-bottom: 10px;
-    color: #333;
+    margin: 0 0 10px 0;
+    color: var(--text-dark);
+    font-size: 2rem;
+    font-weight: 800;
 }
 
 p {
-    color: #666;
-    margin-bottom: 25px;
+    color: #636e72;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
 }
 
 /* עיצוב שדות הקלט */
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     text-align: right;
 }
 
 .input-group label {
     display: block;
     margin-bottom: 8px;
-    font-weight: bold;
-    color: #444;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
 }
 
 .input-group input {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-sizing: border-box; /* מבטיח שהפדינג לא יגדיל את השדה */
+    padding: 14px 16px;
+    border: 2px solid #dfe6e9;
+    border-radius: 12px;
+    box-sizing: border-box;
     font-size: 16px;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
 }
 
-/* עיצוב כפתור */
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+}
+
+/* עיצוב כפתור התחברות */
 .btn-submit {
     width: 100%;
-    padding: 12px;
-    background-color: #4CAF50; /* ירוק כמו בתמונה */
+    padding: 15px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 18px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 10px;
 }
 
 .btn-submit:hover {
-    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+    background: linear-gradient(135deg, #45a049, #3d8b41);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+/* רספונסיביות לנייד */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 20px;
+    }
 }
