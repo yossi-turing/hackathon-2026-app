@@ -16,17 +16,33 @@ public class MyController {
         return "hello from /data";
     }
 
-    @GetMapping("/add_user")
-    public String addUser(
+    @GetMapping("/check-connection")
+    public String check() {
+        System.out.println("!!! קיבלתי בקשה מהלקוח עכשיו !!!");
+        return "החיבור הצליח! השרת והלקוח מדברים.";
+    }
+
+    @GetMapping("/signUp")
+    public String singUp(
+            @RequestParam String username,
+            @RequestParam String password,
+            @RequestParam String phoneNumber) {
+        return dbUtils.signUp(username, password, phoneNumber);
+    }
+    @GetMapping("/signIn")
+    public String singUp(
             @RequestParam String username,
             @RequestParam String password) {
-        return dbUtils.addUser(username, password);
+        return dbUtils.signIn(username, password);
     }
-    @GetMapping("/check_user")
-    public String checkUser(
+
+    @GetMapping("/remove_user")
+    public String removeUser(
             @RequestParam String username,
             @RequestParam String password) {
-        return dbUtils.checkUser(username, password);
+        return dbUtils.removeUser(username, password);
     }
+
+
 
 }

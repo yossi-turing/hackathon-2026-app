@@ -28,37 +28,14 @@ public class DbUtils {
     public Connection getConnection() {
         return connection;
     }
-    public  String addUser(String username, String password) {
-        if (connection != null) {
-            // בדיקה אם המשתמש כבר קיים
-            String checkSql = "SELECT COUNT(*) FROM User WHERE username = ?";
-            try (PreparedStatement checkStatement = connection.prepareStatement(checkSql)) {
-                checkStatement.setString(1, username);
-                ResultSet resultSet = checkStatement.executeQuery();
-
-                if (resultSet.next() && resultSet.getInt(1) > 0) {
-                    return "המשתמש כבר קיים במערכת";
-                }
-
-                // אם המשתמש לא קיים, הוסף אותו
-                String insertSql = "INSERT INTO User (username, password) VALUES (?, ?)";
-                try (PreparedStatement insertStatement = connection.prepareStatement(insertSql)) {
-                    insertStatement.setString(1, username);
-                    insertStatement.setString(2, password);
-                    insertStatement.executeUpdate();
-                    return "ברוך הבא! המשתמש נוסף בהצלחה";
-                }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return "שגיאה בהוספת המשתמש";
-            }
-        } else {
-            return "אין חיבור למסד הנתונים";
+    public String signUp(String username, String password, String phoneNumber) {
+        // בדיקת תקינות מספר הטלפון
+        if (!isValidPhoneNumber(phoneNumber)) {
+            return "מספר הטלפון לא תקין. יש להזין מספר בפורמט: 05X-XXXXXXX";
         }
-    }
-    public String checkUser(String username, String password) {
+
         if (connection != null) {
+            // בדיקה אם המשתמש כבר קיים (אותו שם משתמש ואותה סיסמה)
             String checkSql = "SELECT COUNT(*) FROM User WHERE username = ? AND password = ?";
             try (PreparedStatement checkStatement = connection.prepareStatement(checkSql)) {
                 checkStatement.setString(1, username);
@@ -66,14 +43,82 @@ public class DbUtils {
                 ResultSet resultSet = checkStatement.executeQuery();
 
                 if (resultSet.next() && resultSet.getInt(1) > 0) {
-                    return "המשתמש קיים במערכת";
+                    return "המשתמש כבר קיים במערכת";
+                }
+
+                // אם המשתמש לא קיים, הוסף אותו
+                String insertSql = "INSERT INTO User (username, password, phone_number) VALUES (?, ?, ?)";
+                try (PreparedStatement insertStatement = connection.prepareStatement(insertSql)) {
+                    insertStatement.setString(1, username);
+                    insertStatement.setString(2, password);
+                    insertStatement.setString(3, phoneNumber);
+                    insertStatement.executeUpdate();
+                    return "ברוך הבא! המשתמש נוסף בהצלחה";
+                }
+
+            } catch (SQLException e) {
+                // בדיקה אם השגיאה היא בגלל טלפון כפול
+                if (e.getMessage().contains("UNIQUE") || e.getMessage().contains("phone_number")) {
+                    return "מספר הטלפון כבר קיים במערכת";
+                }
+                e.printStackTrace();
+                return "שגיאה בהוספת המשתמש";
+            }
+        } else {
+            return "אין חיבור למסד הנתונים";
+        }
+    }
+
+    // פונקציית עזר לבדיקת תקינות מספר טלפון
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        if (phoneNumber == null || phoneNumber.isEmpty()) {
+            return false;
+        }
+
+        // בדיקה שהפורמט הוא: 05X-XXXXXXX
+        String phonePattern = "^05\\d-\\d{7}$";
+
+        return phoneNumber.matches(phonePattern);
+    }
+    public String signIn(String username, String password) {
+        if (connection != null) {
+            String sql = "SELECT COUNT(*) FROM User WHERE username = ? AND password = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, username);
+                statement.setString(2, password);
+                ResultSet resultSet = statement.executeQuery();
+
+                if (resultSet.next() && resultSet.getInt(1) > 0) {
+                    return "ברוך הבא! התחברת בהצלחה";
                 } else {
-                    return "שם משתמש או סיסמה שגויים";
+                    return "המשתמש לא קיים במערכת";
                 }
 
             } catch (SQLException e) {
                 e.printStackTrace();
-                return "שגיאה בבדיקת המשתמש";
+                return "שגיאה בהתחברות";
+            }
+        } else {
+            return "אין חיבור למסד הנתונים";
+        }
+    }
+    public String removeUser(String username, String password) {
+        if (connection != null) {
+            String sql = "DELETE FROM User WHERE username = ? AND password = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, username);
+                statement.setString(2, password);
+                int rowsAffected = statement.executeUpdate();
+
+                if (rowsAffected > 0) {
+                    return "המשתמש הוסר בהצלחה";
+                } else {
+                    return "אין משתמש כזה במערכת";
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return "שגיאה בהסרת המשתמש";
             }
         } else {
             return "אין חיבור למסד הנתונים";
