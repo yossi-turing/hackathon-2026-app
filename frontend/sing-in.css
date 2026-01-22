@@ -3,7 +3,7 @@
     --primary-color: #ff6b6b; /* צבע דגש - כתום-אדום מודרני */
     --secondary-color: #4CAF50; /* ירוק רענן */
     --text-dark: #2d3436;
-    --bg-image: url('"C:\Users\hubhn\OneDrive\Desktop\Background.jpeg"');
+    --bg-image: url('./assets/images/background.jpeg');
 }
 
 /* עיצוב כללי */
