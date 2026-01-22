@@ -3,30 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>דף התחברות - munchMate</title>
+    <title>munchMate - התחברות והרשמה</title>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="sing-in.css">
 </head>
 <body>
     <div class="background-overlay">
         <div class="login-container">
-            <h2>ברוכים הבאים</h2>
-            <p>אנא הזינו פרטים כדי להמשיך</p>
+            <h2 id="form-title">ברוכים הבאים</h2>
+            <p id="form-subtitle">אנא הזינו פרטים כדי להמשיך</p>
             
-            <form id="login-form">
+            <form id="auth-form">
                 <div class="input-group">
                     <label for="username">שם משתמש</label>
                     <input type="text" id="username" placeholder="הכנס שם משתמש" required>
                 </div>
 
-                <div class="input-group">
+                 <div class="input-group">
                     <label for="password">סיסמה</label>
                     <input type="password" id="password" placeholder="הכנס סיסמה" required>
                 </div>
 
-                <button type="submit" class="btn-submit">התחבר</button>
+
+                <div id="phone-group" class="input-group hidden">
+                    <label for="phone">מספר טלפון</label>
+                    <input type="tel" id="phone" placeholder="05X-XXXXXXX">
+                </div>
+
+               
+                <button type="submit" id="submit-btn" class="btn-submit">התחבר</button>
             </form>
+
+            <div class="toggle-container">
+                <p id="toggle-text">אין לך חשבון? <a href="#" id="toggle-link">להרשמה לחץ כאן</a></p>
+            </div>
         </div>
     </div>
+
+    <script>
+        const toggleLink = document.getElementById('toggle-link');
+        const phoneGroup = document.getElementById('phone-group');
+        const phoneInput = document.getElementById('phone');
+        const submitBtn = document.getElementById('submit-btn');
+        const formTitle = document.getElementById('form-title');
+        const toggleText = document.getElementById('toggle-text');
+
+        let isRegisterMode = false;
+
+        toggleLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            isRegisterMode = !isRegisterMode;
+
+            if (isRegisterMode) {
+                phoneGroup.classList.remove('hidden');
+                phoneInput.setAttribute('required', 'required');
+                formTitle.innerText = "יצירת חשבון";
+                submitBtn.innerText = "הרשם";
+                toggleText.innerHTML = 'כבר יש לך חשבון? <a href="#" id="toggle-link">להתחברות לחץ כאן</a>';
+            } else {
+                phoneGroup.classList.add('hidden');
+                phoneInput.removeAttribute('required');
+                formTitle.innerText = "ברוכים הבאים";
+                submitBtn.innerText = "התחבר";
+                toggleText.innerHTML = 'אין לך חשבון? <a href="#" id="toggle-link">להרשמה לחץ כאן</a>';
+            }
+            
+            // חיבור מחדש של האירוע לקישור החדש שנוצר ב-innerHTML
+            document.getElementById('toggle-link').addEventListener('click', arguments.callee);
+        });
+    </script>
 </body>
 </html>
