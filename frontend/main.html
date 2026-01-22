@@ -1,20 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תפריט מנות</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
-   <div class="container">
-    <a href="meat.html" class="category meat">
-        <span>בשרי</span>
-    </a>
-    <a href="dairy.html" class="category dairy">
-        <span>חלבי</span>
-    </a>
+
+    <div class="background-overlay"></div>
+
+    <div class="main-content">
+        <header>
+            <h1>מה תרצו לאכול היום?</h1>
+            <div class="search-box">
+                <input type="text" placeholder="חפש מנה טעימה...">
+            </div>
+        </header>
+
+        <div class="filter-section">
+            <button class="filter-btn meat-btn">בשרי</button>
+            <button class="filter-btn dairy-btn">חלבי</button>
+            <button class="filter-btn kosher-btn">כשר</button>
+        </div>
+
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="food-icon">🍔</div>
+                <h3>המבורגר</h3>
+                <p>בקר משובח בלחמניה</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🍕</div>
+                <h3>פיצה</h3>
+                <p>בצק איטלקי ותוספות</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🍝</div>
+                <h3>פסטה</h3>
+                <p>רטבים לבחירה</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🌮</div>
+                <h3>טורטיה</h3>
+                <p>במילוי בשר/עוף</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🍟</div>
+                <h3>צ'יפס</h3>
+                <p>פריך וחם</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🥗</div>
+                <h3>סלט קיסר</h3>
+                <p>ירקות טריים ורוטב</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="location-wrapper">
+    <button class="location-icon-btn" onclick="toggleLocationMenu()">📍 בחר טווח מרחק</button>
+    <div id="location-menu" class="location-menu">
+        <p>טווח הזמנה רצוי:</p>
+        <hr>
+        <label><input type="radio" name="distance" value="2"> 1 ק"מ - 2 ק"מ</label>
+        <label><input type="radio" name="distance" value="3"> 1 ק"מ - 3 ק"m</label>
+        <label><input type="radio" name="distance" value="4"> 1 ק"מ - 4 ק"מ</label>
+        <label><input type="radio" name="distance" value="any" checked> לא משנה לי המרחק</label>
+    </div>
 </div>
+
+
+
 </body>
 </html>
