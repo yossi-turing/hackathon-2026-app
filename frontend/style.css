@@ -1,0 +1,163 @@
+body {
+    background-color: black; /* רקע שחור מאחור */
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    direction: rtl;
+}
+
+.container {
+    display: flex;
+    width: 90%; /* רוחב האזור של הכפתורים */
+    height: 80vh; /* גובה האזור */
+    gap: 20px; /* רווח קטן בין שני החלקים */
+}
+
+.category {
+    flex: 1; /* מחלק את השטח שווה בשווה בין שניהם */
+    background-color: #E1AD01; /* צבע חרדל */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; /* מבטל את הקו התחתון של הקישור */
+    color: black; /* צבע הטקסט */
+    font-size: 3rem;
+    font-weight: bold;
+    border-radius: 15px; /* פינות מעוגלות מעט */
+    transition: transform 0.3s; /* אפקט תנועה כשנוגעים */
+}
+
+/* אפקט כשמרחפים עם העכבר על הכפתור */
+.category:hover {
+    transform: scale(1.02);
+    background-color: #c49600; /* חרדל קצת יותר כהה */
+}
+
+/* עיצוב ספציפי לדף ההתחברות */
+.login-page {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background-color: #E1AD01; /* צבע החרדל שלך */
+    padding: 40px;
+    border-radius: 15px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.5);
+}
+
+.login-container h2 {
+    color: black;
+    margin-bottom: 20px;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box; /* מבטיח שהפדינג לא יגדיל את השדה */
+}
+
+.login-button {
+    display: block;
+    background-color: black;
+    color: #E1AD01;
+    padding: 10px;
+    margin-top: 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.login-button:hover {
+    background-color: #333;
+    color: white;
+}
+
+/* עיצוב דפי התפריט */
+.menu-page {
+    background-color: black;
+    color: white;
+    display: block; /* מבטל את ה-flex של ה-body אם קיים */
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.back-button {
+    color: #E1AD01;
+    text-decoration: none;
+    border: 1px solid #E1AD01;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+/* סידור האוכל ברשת */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.food-card {
+    background-color: #E1AD01;
+    color: black;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.food-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(225, 173, 1, 0.4);
+}
+
+.food-emoji {
+    font-size: 3rem;
+}
+
+/* פקודות למסכים קטנים (טלפונים) */
+@media (max-width: 600px) {
+    
+    /* בתוך ה-Main: במקום שני מלבנים זה לצד זה, הם יהיו אחד מעל השני */
+    .container {
+        flex-direction: column; 
+        height: auto;
+        gap: 15px;
+    }
+
+    .category {
+        height: 200px; /* גובה קבוע לכל כפתור בטלפון */
+        font-size: 2rem;
+    }
+
+    /* בתפריטי האוכל: נציג כרטיס אחד בשורה במקום כמה */
+    .menu-grid {
+        grid-template-columns: 1fr; 
+        padding: 10px;
+    }
+
+    .food-card {
+        padding: 15px;
+    }
+
+    .login-container {
+        width: 85%; /* שהטופס לא ייצא מגבולות המסך בטלפונים צרים */
+    }
+}
