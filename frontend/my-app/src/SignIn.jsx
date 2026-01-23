@@ -58,8 +58,9 @@ export default function SignIn() {
                 return;
             }
             const response = signUp(username, password, phone);
-            if (response == 200){
-                navigate('/main');
+            console.log(response);
+            if (response === 200){
+                navigate('http://localhost:5176/main');
             }else{
                 alert("שגיאה בהרשמה");
             }
@@ -67,8 +68,8 @@ export default function SignIn() {
 
         } else {
             const response1 = signIn(username, password);
-            if (response1 == 200){
-                navigate('/main');
+            if (response1 === 200){
+                navigate('http://localhost:5176/main');
             }else{
                 alert("הנתונים שהכנסת שגויים");
             }

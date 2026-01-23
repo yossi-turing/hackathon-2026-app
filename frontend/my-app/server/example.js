@@ -27,8 +27,8 @@ export const signIn = async (username, password) => {
             'Content-type': 'application/json'
         },
     });
-    const data = await response.json();
-    console.log('Success:', data);
+    const data =  response;
+    console.log('Success:', data.status);
     return response.status;
 }
 
@@ -45,9 +45,9 @@ export const signUp = async (username, password, phoneNum) => {
             'Content-type': 'application/json'
         },
     });
-    const data = await response.json();
-    console.log('Success:', data);
-    return response.status;
+    const data =  response;
+    console.log('Success:', data.status);
+    return response.status["success"];
 }
 
 export const getOrders = async () => {
@@ -64,7 +64,7 @@ export const getOrders = async () => {
             throw new Error(`Server error: ${response.status}`);
         }
 
-        const data = await response.json();
+        const data =  response.data();
         console.log('Orders:', data);
 
         return data;
@@ -88,6 +88,6 @@ export const setOrder = async () => {
             'Content-type': 'application/json'
         },
     });
-    const data = await response.json();
+    const data = await response.data();
     console.log('Success:', data);
 }

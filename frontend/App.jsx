@@ -9,7 +9,7 @@ export default function App() {
   return (
     <div className="app">
       <nav className="nav-buttons">
-        <button onClick={() => setCurrentPage('signin')}>התחברות</button>
+        <button onClick={() => setCurrentPage('signOn')}>התחברות</button>
         <button onClick={() => setCurrentPage('signup')}>הרשמה</button>
         <button onClick={() => setCurrentPage('teamlist')}>צפה בקבוצות</button>
       </nav>
