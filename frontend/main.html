@@ -418,7 +418,7 @@
             if (cleanPhone.startsWith('0')) {
                 cleanPhone = '972' + cleanPhone.substring(1);
             }
-            const message = encodeURIComponent(`היי, ראיתי ב-FoodShare שאתה מזמין ${food}, אשמח להצטרף להזמנה!`);
+            const message = encodeURIComponent(`היי, ראיתי ב-MunchMate שאתה מזמין ${food}, אשמח להצטרף להזמנה!`);
             const whatsappUrl = `https://wa.me/${cleanPhone}?text=${message}`;
             window.open(whatsappUrl, '_blank');
         }
