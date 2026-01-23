@@ -18,11 +18,59 @@
             </div>
         </header>
 
-        <div class="filter-section">
-            <button class="filter-btn meat-btn">בשרי</button>
-            <button class="filter-btn dairy-btn">חלבי</button>
-            <button class="filter-btn kosher-btn">כשר</button>
-        </div>
+      <div class="filter-section">
+    <button class="filter-btn meat-btn">בשרי</button>
+    <button class="filter-btn dairy-btn">חלבי</button>
+    <button class="filter-btn new-order-btn" onclick="openOrderModal()">הזמנה חדשה +</button>
+</div>
+
+<div id="orderModal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeOrderModal()">&times;</span>
+        <h2>הזמנה משותפת</h2>
+        <form id="new-order-form">
+            
+            <div class="input-group">
+    <label>מה בא לך לאכול?</label>
+    <select id="food-category" required>
+        <option value="" disabled selected>בחר קטגוריה...</option>
+        <option value="המבורגר" data-icon="🍔">המבורגר</option>
+        <option value="פיצה" data-icon="🍕">פיצה</option>
+        <option value="סושי" data-icon="🍣">סושי</option>
+        <option value="פסטה" data-icon="🍝">פסטה</option>
+        <option value="עוף" data-icon="🍗">עוף</option>
+        <option value="אסייתי" data-icon="🍜">אסייתי</option>
+        <option value="איטלקי" data-icon="🍝">איטלקי</option>
+        <option value="סנדוויץ" data-icon="🥪">סנדוויץ'</option>
+        <option value="שווארמה" data-icon="🥙">שווארמה</option>
+        <option value="סלט" data-icon="🥗">סלט</option>
+        <option value="קינוחים" data-icon="🍩">קינוחים</option>
+        <option value="חומוס" data-icon="🥣">חומוס</option>
+        <option value="קרפ" data-icon="🥞">קרפ</option>
+        <option value="בתי קפה" data-icon="☕">בתי קפה</option>
+    </select>
+</div>
+
+            <div class="input-group">
+                <label>פירוט המנה (תוספות, שינויים)</label>
+                <input type="text" id="food-details" placeholder="למשל: דאבל בקר, בלי בצל" required>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label>מספר טלפון</label>
+                    <input type="tel" id="user-phone" placeholder="05X-XXXXXXX" required>
+                </div>
+                <div class="input-group">
+                    <label>זמן המתנה (דקות)</label>
+                    <input type="number" id="wait-time" placeholder="נניח 20" min="1" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit-order">חפש שותף להזמנה</button>
+        </form>
+    </div>
+</div>
 <div class="categories-grid">
             <div class="category-card">
                 <div class="food-icon">🍔</div>
@@ -130,17 +178,12 @@
                 <h3>גלידה</h3>
                 <p>קינוח מתוק במגוון טעמים</p>
             </div>
-        </div>
-                <div class="category-card">
+            <div class="category-card">
                 <div class="food-icon">🥗</div>
                 <h3>סלט קיסר</h3>
                 <p>ירקות טריים ורוטב</p>
             </div>
-             <div class="category-card">
-                <div class="food-icon">🥗</div>
-                <h3>בולונז</h3>
-                <p>פסטה איטלקית עם בשר טחון</p>
-            </div>
+        
         </div>
     </div>
 
@@ -173,6 +216,24 @@
             if (menu.style.display === "block") {
                 menu.style.display = "none";
             }
+        }
+    }
+</script>
+
+<script>
+    function openOrderModal() {
+        document.getElementById("orderModal").style.display = "flex";
+    }
+
+    function closeOrderModal() {
+        document.getElementById("orderModal").style.display = "none";
+    }
+
+    // סגירה בלחיצה מחוץ למלבן הלבן
+    window.onclick = function(event) {
+        let modal = document.getElementById("orderModal");
+        if (event.target == modal) {
+            closeOrderModal();
         }
     }
 </script>

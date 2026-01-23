@@ -188,3 +188,198 @@ header h1 {
 .location-menu input {
     margin-left: 8px;
 }
+
+/* עיצוב כפתור הזמנה חדשה */
+.new-order-btn {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.new-order-btn:hover {
+    background: #0056b3;
+}
+
+/* שכבת הרקע של המודאל - יוצרת את הטשטוש */
+.modal-overlay {
+    display: none; /* מוסתר כברירת מחדל */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* רקע כהה שקוף */
+    backdrop-filter: blur(15px); /* טשטוש חזק של כל הרקע מאחורה */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* שכבת הרקע החיצונית */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* כהה יותר כדי להבליט את המודאל */
+    backdrop-filter: blur(15px); /* טשטוש חזק של כל האתר מאחורה */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* המלבן של הטופס - עיצוב זכוכית חלבית */
+.modal-content {
+    background: rgba(255, 255, 255, 0.1); /* לבן שקוף מאוד */
+    backdrop-filter: blur(20px); /* טשטוש פנימי של המלבן */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* מסגרת עדינה */
+    padding: 35px;
+    border-radius: 30px; /* פינות מעוגלות כמו בכרטיסיות האוכל */
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    color: white; /* טקסט לבן שמתאים לרקע כהה */
+    text-align: right;
+}
+
+.modal-content h2 {
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* עיצוב השדות - שקופים למחצה */
+.modal-content label {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.modal-content textarea, 
+.modal-content input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.15); /* שדות שקופים */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 12px;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.modal-content textarea::placeholder, 
+.modal-content input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.modal-content textarea:focus, 
+.modal-content input:focus {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: #fff;
+}
+
+/* כפתור שליחה - תואם לכפתור הבשרי/חלבי */
+.btn-submit-order {
+    width: 100%;
+    padding: 14px;
+    margin-top: 20px;
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    transition: transform 0.2s;
+}
+
+.btn-submit-order:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.close-btn {
+    color: rgba(255, 255, 255, 0.7);
+    transition: 0.3s;
+}
+
+.close-btn:hover {
+    color: white;
+}
+
+/* עיצוב התפריט הנפתח */
+.modal-content select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 12px;
+    color: white; /* טקסט לבן תואם לאתר */
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+    appearance: none; /* מסיר את החץ המקורי של הדפדפן */
+}
+
+/* הוספת חץ מותאם אישית */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* שורה עם שני שדות (טלפון וזמן) */
+.input-row {
+    display: flex;
+    gap: 15px;
+}
+
+.input-row .input-group {
+    flex: 1;
+}
+
+/* עיצוב האופציות בתוך הסלקט */
+.modal-content option {
+    background: #333; /* רקע כהה לאופציות כדי שיהיו קריאות */
+    color: white;
+}
+
+/* עיצוב ה-Select לאפשר גלילה */
+.modal-content select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 12px;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+    /* במערכות הפעלה מסוימות הדפדפן מגביל את גובה הגלילה אוטומטית */
+}
+
+/* במידה ותרצה ליצור רשימה מעוצבת יותר עם גלילה אישית (Custom Scrollbar) */
+.modal-content select::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content select::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.modal-content select::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* הגבלת גובה החלונית כולה כדי שלא תצא מהמסך בניידים */
+.modal-content {
+    max-height: 85vh; /* גובה מקסימלי של 85% מהמסך */
+    overflow-y: auto; /* מאפשר גלילה של כל החלונית במידת הצורך */
+}
