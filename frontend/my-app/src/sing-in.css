@@ -1,0 +1,118 @@
+/* משתנים לשליטה קלה בעיצוב */
+:root {
+    --primary-color: #ff6b6b; /* צבע דגש - כתום-אדום מודרני */
+    --secondary-color: #4CAF50; /* ירוק רענן */
+    --text-dark: #2d3436;
+    --bg-image: url('./assets/images/background.jpeg');
+}
+
+/* עיצוב כללי */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Assistant', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    overflow: hidden;
+}
+
+/* שכבת הרקע */
+.background-overlay {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* כרטיסיית ההתחברות */
+.login-container {
+    background: rgba(255, 255, 255, 0.92);
+    padding: 50px 40px;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 420px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+h2 {
+    margin: 0 0 10px 0;
+    color: var(--text-dark);
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+p {
+    color: #636e72;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+/* עיצוב שדות הקלט */
+.input-group {
+    margin-bottom: 25px;
+    text-align: right;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #dfe6e9;
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+}
+
+/* עיצוב כפתור התחברות */
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+    background: linear-gradient(135deg, #45a049, #3d8b41);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+/* רספונסיביות לנייד */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 30px 20px;
+    }
+}
