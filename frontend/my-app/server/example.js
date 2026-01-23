@@ -29,6 +29,7 @@ export const signIn = async (username, password) => {
     });
     const data = await response.json();
     console.log('Success:', data);
+    return response.status;
 }
 
 
@@ -46,6 +47,7 @@ export const signUp = async (username, password, phoneNum) => {
     });
     const data = await response.json();
     console.log('Success:', data);
+    return response.status;
 }
 
 export const getOrders = async () => {
