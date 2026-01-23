@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 
 // export const sendData = async () => {
 //     const response = await fetch('http://10.10.205.213:8080/check-connection', {
