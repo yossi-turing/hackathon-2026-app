@@ -1,0 +1,283 @@
+  
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --primary-blue: #007bff;
+            --accent-green: #28a745;
+            --danger-red: #ff4d4d;
+            --select-bg: rgba(0, 123, 255, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #121212;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* רקע קבוע שלא זז */
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            filter: blur(15px) brightness(0.3);
+            z-index: -1;
+        }
+
+        /* סרגל עליון לכפתורים */
+        .top-bar {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .location-badge {
+            background: var(--glass-bg);
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+        }
+
+        .new-order-btn {
+            background: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            font-size: 14px;
+        }
+
+        .new-order-btn:hover {
+            transform: translateY(-2px);
+            background: #0056b3;
+        }
+
+        .main-content {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px 40px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            margin-bottom: 30px;
+            width: 100%;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            margin-bottom: 20px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 24px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .filter-section {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: 0.3s;
+        }
+
+        .orders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+            align-items: start;
+        }
+
+        .active-order-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 20px;
+            text-align: center;
+            animation: popIn 0.3s ease-out;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .food-icon { font-size: 40px; }
+        .order-title { font-size: 1.2rem; font-weight: bold; }
+        .order-details { opacity: 0.8; font-size: 0.9rem; min-height: 36px; line-height: 1.4; }
+        
+        .timer {
+            color: var(--danger-red);
+            font-weight: bold;
+            background: rgba(255, 77, 77, 0.1);
+            padding: 6px;
+            border-radius: 10px;
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+        
+        .join-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent-green);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 14px;
+        }
+
+        /* מודאל */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .modal-content {
+            background: #1c1c1e;
+            padding: 25px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px; left: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0.5;
+        }
+
+        .input-group { margin-bottom: 15px; text-align: right; }
+        .input-group label { display: block; margin-bottom: 6px; font-weight: 500; color: #ccc; font-size: 14px; }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: white;
+            font-size: 15px;
+        }
+
+        .btn-submit-order {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        /* התאמות למובייל */
+        @media (max-width: 480px) {
+            .top-bar {
+                padding: 15px;
+            }
+            header h1 {
+                font-size: 1.6rem;
+            }
+            .orders-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* שניים בשורה בטלפונים קטנים */
+                gap: 12px;
+            }
+            .active-order-card {
+                padding: 15px;
+                border-radius: 18px;
+            }
+            .food-icon { font-size: 32px; }
+            .order-title { font-size: 1rem; }
+            .order-details { font-size: 0.8rem; min-height: 30px; }
+            .timer { font-size: 0.75rem; padding: 4px; }
+            .join-btn { font-size: 12px; padding: 10px; }
+            .join-btn svg { width: 16px; height: 16px; }
+            
+            .location-badge, .new-order-btn {
+                font-size: 12px;
+                padding: 8px 14px;
+            }
+        }
+    

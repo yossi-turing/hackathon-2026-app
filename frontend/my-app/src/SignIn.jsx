@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './SignIn.css';
 import { signIn, signUp, getOrders, setOrder } from '../server/example.js'; 
+import { Navigate } from 'react-router-dom';
 
 
 export default function SignIn() {
@@ -58,8 +59,7 @@ export default function SignIn() {
             }
             const response = signUp(username, password, phone);
             if (response == 200){
-                alert("נרשמת בהצלחה!");
-                // rearout to signIn(username, password);
+                navigate('/main');
             }else{
                 alert("שגיאה בהרשמה");
             }
@@ -68,8 +68,7 @@ export default function SignIn() {
         } else {
             const response1 = signIn(username, password);
             if (response1 == 200){
-                alert("נכנסת בהצלחה!");
-                // rearout to signIn(username, password);
+                navigate('/main');
             }else{
                 alert("הנתונים שהכנסת שגויים");
             }
