@@ -383,3 +383,88 @@ header h1 {
     max-height: 85vh; /* גובה מקסימלי של 85% מהמסך */
     overflow-y: auto; /* מאפשר גלילה של כל החלונית במידת הצורך */
 }
+
+.active-orders-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.active-order-card {
+    border: 2px solid #ffcc00; /* זהב/כתום להדגשה */
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.5s ease;
+}
+
+.timer {
+    font-weight: bold;
+    color: #ff4444;
+    margin: 10px 0;
+}
+
+.join-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.join-btn:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* סידור הגריד */
+.orders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* יצירת עמודות אוטומטיות */
+    gap: 20px;
+    padding: 20px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* עיצוב כרטיסיית הזמנה (סטייל זכוכית כמו בתמונה) */
+.active-order-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.active-order-card:hover {
+    transform: translateY(-5px);
+}
+
+.order-timer {
+    color: #ff4d4d;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.view-details-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 100%;
+}
