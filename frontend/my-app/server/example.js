@@ -16,12 +16,12 @@ import axios from "axios";
 //     console.log('Success:', data);
 // }
 
-export const signIn = async () => {
+export const signIn = async (username,password) => {
     const response = await fetch('http://localhost:8080/signIn', {
         method: 'POST',
         body: JSON.stringify({
-            username: 'poopie',
-            password: 'poopie123',
+            username: username,
+            password: password,
         }),
         headers: {
             'Content-type': 'application/json'
@@ -30,6 +30,7 @@ export const signIn = async () => {
     const data = await response.json();
     console.log('Success:', data);
 }
+
 
 export const signUp = async () => {
     const response = await fetch('http://localhost:8080/signUp', {
