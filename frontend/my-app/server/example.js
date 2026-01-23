@@ -16,7 +16,7 @@ import axios from "axios";
 //     console.log('Success:', data);
 // }
 
-export const signIn = async (username,password) => {
+export const signIn = async (username, password) => {
     const response = await fetch('http://localhost:8080/signIn', {
         method: 'POST',
         body: JSON.stringify({
@@ -32,13 +32,13 @@ export const signIn = async (username,password) => {
 }
 
 
-export const signUp = async () => {
+export const signUp = async (username, password, phoneNum) => {
     const response = await fetch('http://localhost:8080/signUp', {
         method: 'POST',
         body: JSON.stringify({
-            username: 'poopie',
-            password: 'poopie123',
-            phoneNum: '0541234567',
+            username: username,
+            password: password,
+            phoneNum: phoneNum,
         }),
         headers: {
             'Content-type': 'application/json'
