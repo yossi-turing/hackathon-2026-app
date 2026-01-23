@@ -1,20 +1,244 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תפריט מנות</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
-   <div class="container">
-    <a href="meat.html" class="category meat">
-        <span>בשרי</span>
-    </a>
-    <a href="dairy.html" class="category dairy">
-        <span>חלבי</span>
-    </a>
+
+    <div class="background-overlay"></div>
+
+    <div class="main-content">
+        <header>
+            <h1>מה תרצו לאכול היום?</h1>
+            <div class="search-box">
+                <input type="text" placeholder="חפש מנה טעימה...">
+            </div>
+        </header>
+
+      <div class="filter-section">
+    <button class="filter-btn meat-btn">בשרי</button>
+    <button class="filter-btn dairy-btn">חלבי</button>
+    <button class="filter-btn new-order-btn" onclick="openOrderModal()">הזמנה חדשה +</button>
 </div>
+
+<div id="orderModal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeOrderModal()">&times;</span>
+        <h2>הזמנה משותפת</h2>
+        <form id="new-order-form">
+            
+            <div class="input-group">
+    <label>מה בא לך לאכול?</label>
+    <select id="food-category" required>
+        <option value="" disabled selected>בחר קטגוריה...</option>
+        <option value="המבורגר" data-icon="🍔">המבורגר</option>
+        <option value="פיצה" data-icon="🍕">פיצה</option>
+        <option value="סושי" data-icon="🍣">סושי</option>
+        <option value="פסטה" data-icon="🍝">פסטה</option>
+        <option value="עוף" data-icon="🍗">עוף</option>
+        <option value="אסייתי" data-icon="🍜">אסייתי</option>
+        <option value="איטלקי" data-icon="🍝">איטלקי</option>
+        <option value="סנדוויץ" data-icon="🥪">סנדוויץ'</option>
+        <option value="שווארמה" data-icon="🥙">שווארמה</option>
+        <option value="סלט" data-icon="🥗">סלט</option>
+        <option value="קינוחים" data-icon="🍩">קינוחים</option>
+        <option value="חומוס" data-icon="🥣">חומוס</option>
+        <option value="קרפ" data-icon="🥞">קרפ</option>
+        <option value="בתי קפה" data-icon="☕">בתי קפה</option>
+    </select>
+</div>
+
+            <div class="input-group">
+                <label>פירוט המנה (תוספות, שינויים)</label>
+                <input type="text" id="food-details" placeholder="למשל: דאבל בקר, בלי בצל" required>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label>מספר טלפון</label>
+                    <input type="tel" id="user-phone" placeholder="05X-XXXXXXX" required>
+                </div>
+                <div class="input-group">
+                    <label>זמן המתנה (דקות)</label>
+                    <input type="number" id="wait-time" placeholder="נניח 20" min="1" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit-order">חפש שותף להזמנה</button>
+        </form>
+    </div>
+</div>
+<div class="categories-grid">
+            <div class="category-card">
+                <div class="food-icon">🍔</div>
+                <h3>המבורגר</h3>
+                <p>בקר משובח בלחמניה</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🍕</div>
+                <h3>פיצה</h3>
+                <p>בצק איטלקי ותוספות</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🍝</div>
+                <h3>פסטה</h3>
+                <p>רטבים לבחירה</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🌮</div>
+                <h3>טורטיה</h3>
+                <p>במילוי בשר/עוף</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🍟</div>
+                <h3>צ'יפס</h3>
+                <p>פריך וחם</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🥗</div>
+                <h3>סלט קיסר</h3>
+                <p>ירקות טריים ורוטב</p>
+            </div>
+
+            <div class="category-card">
+                <div class="food-icon">🍣</div>
+                <h3>סושי</h3>
+                <p>רולים דגים וירקות</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🧆</div>
+                <h3>פלאפל</h3>
+                <p>כדורים בפיתה עם טחינה</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🌯</div>
+                <h3>שווארמה</h3>
+                <p>בלאפה עם עמבה</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🍗</div>
+                <h3>שניצל</h3>
+                <p>חזה עוף בציפוי פריך</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🥡</div>
+                <h3>מוקפץ</h3>
+                <p>נודלס ירקות ורוטב סויה</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🥩</div>
+                <h3>סטייק</h3>
+                <p>אנטריקוט עסיסי בגריל</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🍳</div>
+                <h3>שקשוקה</h3>
+                <p>ביצים ברוטב עגבניות לוהט</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🥘</div>
+                <h3>חומוס</h3>
+                <p>גרגרים, שמן זית ופיתות</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🐟</div>
+                <h3>דג בתנור</h3>
+                <p>פילה עם עשבי תיבול</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🥪</div>
+                <h3>כריך בריאות</h3>
+                <p>לחם כפרי וגבינות</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🌭</div>
+                <h3>נקניקיה</h3>
+                <p>בלחמניה עם כרוב כבוש</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🥣</div>
+                <h3>מרק היום</h3>
+                <p>חם, עשיר ומנחם</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🍢</div>
+                <h3>שיפודים</h3>
+                <p>קבב ופרגית על האש</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🥞</div>
+                <h3>פנקייק</h3>
+                <p>עם סירופ מייפל ופירות</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🍦</div>
+                <h3>גלידה</h3>
+                <p>קינוח מתוק במגוון טעמים</p>
+            </div>
+            <div class="category-card">
+                <div class="food-icon">🥗</div>
+                <h3>סלט קיסר</h3>
+                <p>ירקות טריים ורוטב</p>
+            </div>
+        
+        </div>
+    </div>
+
+    <div class="location-wrapper">
+    <button class="location-icon-btn" onclick="toggleLocationMenu()">📍 בחר טווח מרחק</button>
+    <div id="location-menu" class="location-menu">
+        <p>טווח הזמנה רצוי:</p>
+        <hr>
+        <label><input type="radio" name="distance" value="2"> 1 ק"מ - 2 ק"מ</label>
+        <label><input type="radio" name="distance" value="3"> 1 ק"מ - 3 ק"m</label>
+        <label><input type="radio" name="distance" value="4"> 1 ק"מ - 4 ק"מ</label>
+        <label><input type="radio" name="distance" value="any" checked> לא משנה לי המרחק</label>
+    </div>
+</div>
+
+<script>
+    function toggleLocationMenu() {
+        var menu = document.getElementById("location-menu");
+        if (menu.style.display === "block") {
+            menu.style.display = "none";
+        } else {
+            menu.style.display = "block";
+        }
+    }
+
+    // סגירת התפריט אם לוחצים מחוץ לו
+    window.onclick = function(event) {
+        if (!event.target.matches('.location-icon-btn')) {
+            var menu = document.getElementById("location-menu");
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            }
+        }
+    }
+</script>
+
+<script>
+    function openOrderModal() {
+        document.getElementById("orderModal").style.display = "flex";
+    }
+
+    function closeOrderModal() {
+        document.getElementById("orderModal").style.display = "none";
+    }
+
+    // סגירה בלחיצה מחוץ למלבן הלבן
+    window.onclick = function(event) {
+        let modal = document.getElementById("orderModal");
+        if (event.target == modal) {
+            closeOrderModal();
+        }
+    }
+</script>
+
+
+
 </body>
 </html>
