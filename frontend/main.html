@@ -11,7 +11,7 @@
             --primary-blue: #007bff;
             --accent-green: #28a745;
             --danger-red: #ff4d4d;
-            --select-bg: rgba(0, 123, 255, 0.15);
+            --select-bg: rgba(0, 86, 179, 0.3); /* צבע רקע חדש ובולט יותר */
         }
 
         * {
@@ -243,6 +243,26 @@
             border-radius: 12px;
             color: white;
             font-size: 15px;
+            transition: background 0.3s;
+        }
+
+        /* עיצוב משודרג לשדה "מה בתפריט" */
+        #food-category {
+            background: var(--select-bg);
+            border-color: rgba(0, 123, 255, 0.4);
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        #food-category:focus {
+            background: rgba(0, 123, 255, 0.45);
+            border-color: var(--primary-blue);
+            outline: none;
+        }
+
+        #food-category option {
+            background: #1c1c1e;
+            color: white;
         }
 
         .btn-submit-order {
@@ -267,7 +287,7 @@
                 font-size: 1.6rem;
             }
             .orders-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* שניים בשורה בטלפונים קטנים */
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
                 gap: 12px;
             }
             .active-order-card {
@@ -292,7 +312,6 @@
 
     <div class="background-overlay"></div>
     
-    <!-- סרגל עליון -->
     <div class="top-bar">
         <div class="location-badge">📍 גן יבנה והסביבה</div>
         <button class="new-order-btn" onclick="openModal()">הזמנה חדשה +</button>
@@ -330,6 +349,11 @@
                         <option value="סושי" data-icon="🍣">סושי</option>
                         <option value="אסייתי" data-icon="🍜">אסייתי</option>
                         <option value="סלט" data-icon="🥗">סלט</option>
+                        <option value="קינוח" data-icon="🍰">קינוח</option>
+                        <option value="אחר" data-icon="🍽️">אחר</option>
+                        <option value="שניצל" data-icon="🍽️">שניצל</option>
+                        <option value="שווארמה" data-icon="🍽️">שווארמה</option>
+
                     </select>
                 </div>
                 <div class="input-group">
@@ -418,7 +442,7 @@
             if (cleanPhone.startsWith('0')) {
                 cleanPhone = '972' + cleanPhone.substring(1);
             }
-            const message = encodeURIComponent(`היי, ראיתי ב-MunchMate שאתה מזמין ${food}, אשמח להצטרף להזמנה!`);
+            const message = encodeURIComponent(`היי, ראיתי ב-FoodShare שאתה מזמין ${food}, אשמח להצטרף להזמנה!`);
             const whatsappUrl = `https://wa.me/${cleanPhone}?text=${message}`;
             window.open(whatsappUrl, '_blank');
         }

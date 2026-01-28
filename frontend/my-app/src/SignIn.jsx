@@ -1,43 +1,23 @@
 import React, { useState } from 'react';
 import './SignIn.css';
 import { signIn, signUp, getOrders, setOrder } from '../server/example.js'; 
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function SignIn() {
     const [isRegisterMode, setIsRegisterMode] = useState(false);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [phone, setPhone] = useState('');
+    const navigate = useNavigate();
 
-    // --- הפונקציה שלך (לא נגעתי) ---
     const handleToggleMode = (e) => {
         e.preventDefault();
-        setIsRegisterMode(!isRegisterMode);
-
-        const phoneGroup = document.getElementById('phone-group');
-        const phoneInput = document.getElementById('phone');
-        const submitBtn = document.getElementById('submit-btn');
-        const formTitle = document.getElementById('form-title');
-
-        if (!isRegisterMode) { // שים לב: כאן זה הפוך כי הסטייט מתעדכן אסינכרונית, אבל השארתי את הלוגיקה שלך
-            phoneGroup.classList.remove('hidden');
-            phoneInput.setAttribute('required', 'required');
-            formTitle.innerText = "יצירת חשבון";
-            submitBtn.innerText = "הרשם";
-        } else {
-            phoneGroup.classList.add('hidden');
-            phoneInput.removeAttribute('required');
-            formTitle.innerText = "ברוכים הבאים";
-            submitBtn.innerText = "התחבר";
-        }
+        setIsRegisterMode((prev) => !prev);
     };
 
-    // --- השינוי היחיד: הוספת הפונקציה שמטפלת בלחיצה על הכפתור ---
-    const handleSubmit = (e) => {
-        alert("נכנס לפונקציית השליחה");
+    const handleSubmit = async (e) => {
         e.preventDefault(); // מונע רענון
-
-        // משיכת הערכים מהשדות (כי הם לא ב-State)
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
 
         // בדיקת תקינות בסיסית
         if (!username || !password) {
@@ -52,23 +32,28 @@ export default function SignIn() {
 
         // בדיקה ספציפית להרשמה (בדיקת טלפון)
         if (isRegisterMode) {
-            const phone = document.getElementById('phone').value;
             if (!phone) {
                 alert("שגיאה: בהרשמה חובה להזין מספר טלפון");
                 return;
             }
-            const response = signUp(username, password, phone);
+            const response = await signUp(username, password, phone);
             if (response == 200){
+                localStorage.setItem('username', username); // שמירת המשתמש
                 navigate('/main');
+            } else if (response === 0) {
+                alert("שגיאת תקשורת: נראה שהשרת לא דולק. נסה להריץ 'npm start' בטרמינל.");
             }else{
                 alert("שגיאה בהרשמה");
             }
 
 
         } else {
-            const response1 = signIn(username, password);
+            const response1 = await signIn(username, password);
             if (response1 == 200){
+                localStorage.setItem('username', username); // שמירת המשתמש
                 navigate('/main');
+            } else if (response1 === 0) {
+                alert("שגיאת תקשורת: נראה שהשרת לא דולק. נסה להריץ 'npm start' בטרמינל.");
             }else{
                 alert("הנתונים שהכנסת שגויים");
             }
@@ -82,32 +67,51 @@ export default function SignIn() {
 
     return (
         <>
-            <div className="background-overlay">
+            <div className="background-overlay"></div>
+            <div className="login-wrapper">
                 <div className="login-container">
-                    <h2 id="form-title">ברוכים הבאים</h2>
+                    <h2 id="form-title">{isRegisterMode ? "יצירת חשבון" : "ברוכים הבאים"}</h2>
                     <p id="form-subtitle">אנא הזינו פרטים כדי להמשיך</p>
 
-                    {/* שינוי קטן: הוספתי את onSubmit */}
                     <form id="auth-form" onSubmit={handleSubmit}>
                         <div className="input-group">
                             <label htmlFor="username">שם משתמש</label>
-                            <input type="text" id="username" placeholder="הכנס שם משתמש" required />
+                            <input 
+                                type="text" 
+                                id="username" 
+                                placeholder="הכנס שם משתמש" 
+                                required 
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
                         </div>
 
                         <div className="input-group">
                             <label htmlFor="password">סיסמה</label>
-                            <input type="password" id="password" placeholder="הכנס סיסמה" required />
+                            <input 
+                                type="password" 
+                                id="password" 
+                                placeholder="הכנס סיסמה" 
+                                required 
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
                         </div>
 
-                        <div id="phone-group" className="input-group hidden">
+                        <div id="phone-group" className={`input-group ${isRegisterMode ? '' : 'hidden'}`}>
                             <label htmlFor="phone">מספר טלפון</label>
-                            <input type="tel" id="phone" placeholder="05X-XXXXXXX" />
+                            <input 
+                                type="tel" 
+                                id="phone" 
+                                placeholder="05X-XXXXXXX" 
+                                required={isRegisterMode}
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                            />
                         </div>
 
-                        {/* הכפתור נשאר כמו שהוא, הוא מפעיל את ה-Form למעלה */}
                         <button type="submit" id="submit-btn" className="btn-submit">
                             {isRegisterMode ? "הרשם" : "התחבר"}
-
                         </button>
                     </form>
 

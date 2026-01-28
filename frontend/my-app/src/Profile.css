@@ -1,0 +1,167 @@
+.profile-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    direction: rtl;
+    color: white;
+}
+
+.profile-container {
+    width: 100%;
+    max-width: 800px;
+    background: rgba(30, 30, 30, 0.85);
+    backdrop-filter: blur(15px);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+}
+
+.back-btn-profile {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.back-btn-profile:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 30px;
+}
+
+.avatar-circle {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+.profile-header h1 {
+    margin: 0 0 20px 0;
+    font-size: 2rem;
+}
+
+/* כרטיס סטטיסטיקה */
+.stats-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px 30px;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stats-card h3 {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+    color: #ddd;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.stat-subtitle {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin: 5px 0 0 0;
+}
+
+.user-details {
+    font-size: 1.1rem;
+    color: #ddd;
+}
+
+.view-mode {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.edit-icon-btn {
+    background: none;
+    border: none;
+    color: #4CAF50;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+
+.edit-mode {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.edit-mode input {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #555;
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.save-btn { background: #4CAF50; border: none; padding: 8px 15px; border-radius: 8px; color: white; cursor: pointer; }
+.cancel-btn { background: #f44336; border: none; padding: 8px 15px; border-radius: 8px; color: white; cursor: pointer; }
+
+/* היסטוריית הזמנות */
+.orders-history h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    border-right: 4px solid #ff6b6b;
+    padding-right: 15px;
+}
+
+.history-list { display: flex; flex-direction: column; gap: 15px; }
+
+.history-card {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: 0.3s;
+}
+
+.history-card:hover { background: rgba(255,255,255,0.1); transform: translateX(-5px); }
+
+.history-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.history-category { font-weight: bold; font-size: 1.1rem; color: #ffd700; }
+.history-date { font-size: 0.9rem; color: #aaa; }
+.history-details { margin-bottom: 15px; line-height: 1.4; }
+
+.history-footer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #ccc;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 10px;
+}
+
+.no-history { text-align: center; color: #888; margin-top: 20px; }
+.loading-screen { height: 100vh; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.5rem; }

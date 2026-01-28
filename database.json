@@ -1,0 +1,42 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "password123",
+      "phoneNum": "0500000000"
+    },
+    {
+      "username": "admin1",
+      "password": "password123",
+      "phoneNum": "0546515799"
+    },
+    {
+      "username": "daniel",
+      "password": "888888d",
+      "phoneNum": "057777777"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1769555704389,
+      "category": "אוכל אסייתי",
+      "details": "sa",
+      "aliveTimer": 30,
+      "phoneNum": "0000000000",
+      "createdAt": "2026-01-27T23:15:04.389Z"
+    },
+    {
+      "id": 1769590239420,
+      "category": "המבורגרים",
+      "details": "JHBH",
+      "aliveTimer": 30,
+      "phoneNum": "0000000000",
+      "price": 0,
+      "location": "תל אביב",
+      "creator": "admin",
+      "participants": [],
+      "createdAt": "2026-01-28T08:50:39.420Z"
+    }
+  ],
+  "notifications": []
+}

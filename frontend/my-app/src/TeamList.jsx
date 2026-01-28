@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './TeamList.css';
 
 export default function TeamList() {
+    const navigate = useNavigate();
     const [teams] = useState([
         {
             id: 1,
@@ -25,6 +27,7 @@ export default function TeamList() {
 
     return (
         <div className="team-list-container">
+            <button className="back-btn" onClick={() => navigate('/main')}>⬅ חזרה לדף הבית</button>
             <h1>קבוצות העבודה</h1>
             <div className="teams-grid">
                 {teams.map((team) => (
