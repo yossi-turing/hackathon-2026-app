@@ -77,7 +77,7 @@ export const getOrders = async () => {
             throw new Error(`Server error: ${response.status}`);
         }
 
-        const data = await response.json();
+        const data =  await response.json();
         console.log('Orders:', data);
 
         return data;
